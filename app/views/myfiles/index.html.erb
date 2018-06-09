@@ -1,0 +1,36 @@
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
+<br />
+
+<%= link_to "Upload File", new_myfile_path, class: "btn btn-primary" %>
+<br />
+<br />
+
+<table class = "table table-bordered table-striped">
+   <thead>.
+      <tr>
+			<th>Cretead At</th>
+         <th>Name</th>
+         <th>Download Link</th>
+         <th> </th>
+      </tr>
+   </thead>
+   
+   <tbody>
+      <% @myfiles.each do |myfile| %>
+         
+         <tr>
+		 <td><%= myfile.created_at %></td>
+            <td><%= myfile.name %></td>
+            <td><%= link_to "Download file", myfile.attachment_url %></td>
+            <td><%= button_to "Delete",  myfile, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{myfile.name}?" %></td>
+         </tr>
+         
+      <% end %>
+   </tbody>
+   
+</table>
