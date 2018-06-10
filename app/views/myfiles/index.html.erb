@@ -1,3 +1,4 @@
+<div class="container">
 <% if !flash[:notice].blank? %>
    <div class = "alert alert-info">
       <%= flash[:notice] %>
@@ -9,12 +10,11 @@
 <%= link_to "Upload File", new_myfile_path, class: "btn btn-primary" %>
 <br />
 <br />
-
+<span class="">Total files: <%= @count_files%></span>
 <table class = "table table-bordered table-striped">
    <thead>.
       <tr>
-			<th>Cretead At</th>
-         <th>Name</th>
+			    <th>Name</th>
          <th>Download Link</th>
          <th> </th>
       </tr>
@@ -22,15 +22,16 @@
    
    <tbody>
       <% @myfiles.each do |myfile| %>
-         
          <tr>
-		 <td><%= myfile.created_at %></td>
-            <td><%= myfile.name %></td>
-            <td><%= link_to "Download file", myfile.attachment_url %></td>
-            <td><%= button_to "Delete",  myfile, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{myfile.name}?" %></td>
+          <td><span class="fa fa-file">   <span/><%= link_to myfile.name, myfile.attachment_url %></td>
+		        <td><%=time_ago_in_words(myfile.updated_at)%></td>
+            <td><%= link_to "Edit", myfiles_edit_path(:id_file => myfile.id), class: "btn btn-primary" %> | 
+            <%= link_to "Delete", myfiles_delete_path(:id_file => myfile.id),  class: "btn btn-danger"%></td>
+            <!-- 
+            <%= button_to "Delete",  myfile, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{myfile.name}?" %>
+            -->
          </tr>
-         
       <% end %>
    </tbody>
-   
 </table>
+</div>
