@@ -26,7 +26,7 @@
           <td><span class="fa fa-file">   <span/><%= link_to myfile.name, myfile.attachment_url %></td>
 		        <td><%=time_ago_in_words(myfile.updated_at)%></td>
             <td><%= link_to "Edit", myfiles_edit_path(:id_file => myfile.id), class: "btn btn-primary" %> | 
-            <%= link_to "Delete", myfiles_delete_path(:id_file => myfile.id),  class: "btn btn-danger"%></td>
+            <%= link_to "Destroy", myfile, method: :delete,  class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
             <!-- 
             <%= button_to "Delete",  myfile, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{myfile.name}?" %>
             -->

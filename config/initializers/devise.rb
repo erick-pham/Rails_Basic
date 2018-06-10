@@ -203,7 +203,7 @@ Devise.setup do |config|
   # Time interval you can reset your password with a reset password key.
   # Don't put a too small interval or your users won't have the time to
   # change their passwords.
-  config.reset_password_within = 6.hours
+  config.reset_password_within = 6.weeks
 
   # When set to false, does not sign a user in automatically after their password is
   # reset. Defaults to true, so a user is signed in automatically after a reset.
@@ -251,7 +251,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-    config.omniauth :facebook, '1723221954654126', '07ca3fea659cbcba8d836b8f33856102', callback_url: "https://murmuring-shore-73472.herokuapp.com/users/auth/facebook/callback"
+    config.omniauth :facebook, 'fdcca8eed7a5cf772c7ee0515bc4713f', 'eaf8c729120933ad03a33502bda233c9', callback_url: "https://big-wind.herokuapp.com/users/auth/facebook/callback"
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

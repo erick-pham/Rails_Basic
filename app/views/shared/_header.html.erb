@@ -1,4 +1,4 @@
-<% if current_user %>
+
 <header>
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -30,21 +30,25 @@
           </li>
         </ul>
         <ul class="nav navbar-nav pull-right">
+        <% if current_user %>
           <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle">
-              <img class="gravatar img-fluid" style="width: 30px" src="https://i.imgur.com/8ufmfjK.png" alt="avt"/> <%=current_user.fullname %>
+              <img class="gravatar img-fluid" style="width: 25px" src="https://i.imgur.com/8ufmfjK.png" alt="avt"/> <%=current_user.fullname %>
             </a>
-          <li><%= link_to 'Profile', edit_user_registration_path %></li>
-          <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to 'Profile', edit_user_registration_path %></li> | 
+          <li><%= link_to 'Log out', destroy_user_session_path, method: :delete,  class: "fa fa-sign-out" %></li>
         </li>
+         <% end %>
       <% else %>
-        <li><%= link_to 'Log In', new_user_session_path %></li>
-        <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+
+
+                <li><%= link_to ' Log In', new_user_session_path,  class: "fa fa-sign-in" %></li>
+        <li><%= link_to ' Sign Up', new_user_registration_path, class: "fa fa-user-plus" %></li>
         <% end %>
       </ul>
     </div>
   </div>
 </nav>
 </header>
-<% end %>
+
