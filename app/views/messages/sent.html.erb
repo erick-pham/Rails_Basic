@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="mail-box">
+    <%= render partial: 'left-side' %>
+    <aside class="lg-side">
+      <div class="inbox-head">
+        <h3>Sent Mail</h3>
+        <form action="#" class="pull-right position">
+          <div class="input-append">
+            <input type="text" class="sr-input" placeholder="Search Mail">
+            <button class="btn sr-btn" type="button">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="inbox-body">
+        <table class="table table-inbox table-hover">
+          <tbody>
+            <tr>
+              <th>To</th>
+              <th>Subject</th>
+              <th>Readed At</th>
+              <th>Action</th>
+            </tr>
+            <% @messages.each do |m| %>
+            <% if m.read %>
+            <tr class="" data-id="<%= m.id %>" data-link="<%= m %>">
+            <% else %>
+              <tr class="unread" data-id="<%= m.id %>">
+                <% end %>
+                <td class="view-message"><%= m.user_receiver.fullname %></td>
+                <td class="view-message"><%= m.subject%></td>
+                <td class="view-message"><% if m.read %><%=time_ago_in_words(m.readed_at)%><%else%>Not yet<% end %></td>
+                <td><%= link_to "Read", m %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </aside>
+    </div>
+  </div>
