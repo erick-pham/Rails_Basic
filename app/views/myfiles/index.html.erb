@@ -14,17 +14,21 @@
 <table class = "table table-bordered table-striped">
    <thead>.
       <tr>
-			    <th>Name</th>
-         <th>Download Link</th>
-         <th> </th>
+		    <th>Name</th>
+            <th>Owner</th>
+            <th>Last Modified</th>
+            <th>File Size</th>
+            <th></th>
       </tr>
    </thead>
    
    <tbody>
       <% @myfiles.each do |myfile| %>
          <tr>
-          <td><span class="fa fa-file">   <span/><%= link_to myfile.name, myfile.attachment_url %></td>
-		        <td><%=time_ago_in_words(myfile.updated_at)%></td>
+            <td><span class="fa fa-file">   <span/><%= link_to myfile.name, myfile.attachment_url %></td>
+            <td><%= myfile.user_sender.fullname%></td>
+		    <td><%=time_ago_in_words(myfile.updated_at)%></td>
+            <td><%= number_to_human_size(myfile.size)%></td>
             <td><%= link_to "Edit", myfiles_edit_path(:id_file => myfile.id), class: "btn btn-primary" %> | 
             <%= link_to "Destroy", myfile, method: :delete,  class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
             <!-- 
