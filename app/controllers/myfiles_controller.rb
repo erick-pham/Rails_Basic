@@ -12,15 +12,19 @@ class MyfilesController < ApplicationController
  end
  
  def create
-    params[:item_files]['file'].each do |f|
-      @myfile = Myfile.new
-      @myfile.attachment = f
 
-      # take array string by split
-      str = @myfile.attachment.to_s.split('/')
-      @myfile.name = str[str.count-1]
-      @myfile.save
-    end
+ 
+      params[:item_files]['file'].each do |f|
+        @myfile = Myfile.new
+        @myfile.attachment = f
+        # take array string by split
+        str = @myfile.attachment.to_s.split('/')
+        @myfile.name = str[str.count-1]
+        @myfile.size = @myfile.attachment.size
+        @myfile.user_id = current_user.id
+        @myfile.save
+      end
+
     redirect_to myfiles_path, notice: "The files has been uploaded."
     # @myfile = Myfile.new(myfile_params)
     # if @myfile.save
